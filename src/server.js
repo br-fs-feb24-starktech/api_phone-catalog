@@ -10,13 +10,11 @@ const PORT = process.env.PORT || 3005;
 app.use(cors());
 app.use(express.json());
 
-app.use('/phone_catalog', phoneCatalogRoutes);
+app.use('/', phoneCatalogRoutes);
 
 // sequelize.sync({ force: true }).then(() => {
 //   console.log('Database connected');
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // });
-
-
