@@ -12,11 +12,11 @@ app.use(express.json());
 
 app.use('/phone_catalog', phoneCatalogRoutes);
 
-sequelize.sync({ force: true }).then(() => {
-  console.log('Database connected');
+// sequelize.sync({ force: true }).then(() => {
+//   console.log('Database connected');
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
-});
+// });
 
 
