@@ -1,0 +1,73 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "eslint-config-prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["prettier", "sonarjs", "@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [""],
+        "extensions": [".js", ".jsx", ".tsx", ".ts"]
+      }
+    }
+  },
+  "rules": {
+    "sonarjs/cognitive-complexity": "error",
+    "sonarjs/no-identical-expressions": "error",
+    "import/no-unresolved": "off",
+    "multiline-ternary": ["error", "always-multiline"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignoreStrings": true
+      }
+    ],
+    "no-empty": "error",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": true
+      }
+    ],
+    "space-before-function-paren": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "offsetTernaryExpressions": true,
+        "ignoredNodes": ["TemplateLiteral > *"]
+      }
+    ],
+    "no-unused-vars": 0,
+    "prefer-arrow-callback": "off",
+    "no-plusplus": "off",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default-member": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "@typescript-eslint/no-empty-function": "off"
+  }
+}
