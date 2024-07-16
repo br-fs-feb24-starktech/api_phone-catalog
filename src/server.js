@@ -13,15 +13,11 @@ app.use(express.json());
 
 app.use('/', phoneCatalogRoutes);
 
-// Sincronização manual dos modelos na ordem desejada
 (async () => {
   try {
-    // Inicialize a conexão com o banco de dados
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
-    // Sincronize cada modelo na ordem desejada
-    await models.Category.sync();
     await models.Item.sync();
     await models.Product.sync();
     await models.User.sync();
@@ -31,7 +27,6 @@ app.use('/', phoneCatalogRoutes);
 
     console.log('All models were synchronized successfully.');
 
-    // Inicie o servidor
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
