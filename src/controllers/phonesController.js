@@ -1,4 +1,4 @@
-const { Phone } = require('../models');
+// const { Phone } = require('../models');
 
 const getNewModels = async (req, res) => {
   try {
