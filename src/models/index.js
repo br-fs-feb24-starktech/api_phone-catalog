@@ -1,10 +1,10 @@
-const Address = require('./address');
-const Category = require('./category');
-const User = require('./user');
-const Favourite = require('./favourite');
-const Item = require('./item');
-const Order = require('./order');
-const Product = require('./product');
+const Address = require('./Address');
+const Category = require('./Category');
+const User = require('./User');
+const Favourite = require('./Favourite');
+const Item = require('./Item');
+const Order = require('./Order');
+const Product = require('./Product');
 
 
 const models = {
