@@ -2,13 +2,13 @@ const { getAllFavorites, postFavorite } = require("../services/favoritesService"
 
 const getFavorites = async (req, res) => {
   try {
-    const cart = await getAllFavorites(req.query);
+    const favorites = await getAllFavorites(req.query);
     
-    if (cart instanceof Error) {
+    if (favorites instanceof Error) {
       return res.status(404).json({error: 'Failed to fetch favorites models'});
     }
 
-    res.status(200).json(cart);
+    res.status(200).json(favorites);
 
   } catch (error) {
     console.error(error);
@@ -18,13 +18,13 @@ const getFavorites = async (req, res) => {
 
 const postNewFavorite =  async (req, res) => {
     try {
-      const cart = await postFavorite(req.query);
+      const favorite = await postFavorite(req.query);
       
-      if (cart instanceof Error) {
+      if (favorite instanceof Error) {
         return res.status(404).json({error: 'Failed to add favorites'});
       }
   
-      res.status(200).json(cart);
+      res.status(200).json(favorite);
   
     } catch (error) {
       console.error(error);
