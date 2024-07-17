@@ -4,6 +4,8 @@ const sequelize = require('./config/database');
 const phoneCatalogRoutes = require('./routes/phoneCatalogRoutes');
 require('dotenv').config();
 const models = require('./models');
+const path = require('path');
+
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -12,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', phoneCatalogRoutes);
-app.use('/img', express.static('/public'));
+app.use('/img', express.static(path.join(__dirname, 'public')));
 
 (async () => {
   try {
