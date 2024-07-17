@@ -1,7 +1,8 @@
 const { Favourite } = require('../models');
 
-const getAllFavorites = async () => {
+const getAllFavorites = async (userId) => {
   const result = await Favourite.findAll({
+    where: {userId : userId},
     order: ['createdAt', 'DESC']
   });
 
