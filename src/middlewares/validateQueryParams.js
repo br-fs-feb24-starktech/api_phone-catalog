@@ -18,11 +18,10 @@ const validateQueryParams = (req, res, next) => {
   }
 
   if (category && !isValidCategory(category)) {
-    console.log('entrou aqui');
     return res.status(404).send({ error: systemMessages.PRODUCTS.INVALID_CATEGORY });
   }
 
   return next();
-}
+};
 
 module.exports = validateQueryParams;

@@ -1,5 +1,6 @@
 const { Product, Item } = require('../models');
 const systemMessages = require('../config/systemMessages');
+const { Op } = require('sequelize');
 
 const getProductsService = async filters => {
   let { category, page, limit, sort } = filters;
@@ -57,7 +58,49 @@ const getProductDetailsService = async id => {
   return product;
 };
 
+const shuffledArray = array => {
+  const shuffle = array.slice();
+
+  for (let i = shuffle.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [shuffle[i], shuffle[j]] = [shuffle[j], shuffle[i]];
+  }
+
+  return shuffle;
+};
+
+const getRecommendedProductsService = async itemId => {
+  const limit = 8;
+
+  const product = await Product.findOne({
+    where: {
+      itemId,
+    },
+  });
+
+  const recommendedProducts = await Product.findAll({
+    where: {
+      id: {
+        [Op.gt]: product.id,
+      },
+    },
+    limit,
+    order: [['id', 'ASC']],
+  });
+
+  if (!recommendedProducts) {
+    return new Error(systemMessages.PRODUCTS.PRODUCT_NOT_FOUND);
+  }
+
+  const recommendedProductsList = recommendedProducts.map(product => product.toJSON());
+  const suffledList = shuffledArray(recommendedProductsList);
+
+  return suffledList;
+};
+
 module.exports = {
   getProductsService,
   getProductDetailsService,
+  getRecommendedProductsService,
 };
