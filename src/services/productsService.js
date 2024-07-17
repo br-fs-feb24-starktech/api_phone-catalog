@@ -1,4 +1,4 @@
-const { Product } = require('../models');
+const { Product, Item } = require('../models');
 const systemMessages = require('../config/systemMessages');
 
 const getProductsService = async filters => {
@@ -42,6 +42,22 @@ const getProductsService = async filters => {
   };
 };
 
+const getProductDetailsService = async id => {
+  const query = {
+    where: {
+      id,
+    },
+  };
+  const product = await Item.findOne(query);
+
+  if (!product) {
+    return new Error(systemMessages.PRODUCTS.PRODUCT_NOT_FOUND);
+  }
+
+  return product;
+};
+
 module.exports = {
   getProductsService,
+  getProductDetailsService,
 };

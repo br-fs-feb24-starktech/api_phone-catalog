@@ -1,6 +1,6 @@
-const { getProductsService } = require("./productsService");
-
+const { getProductsService, getProductDetailsService } = require('./productsService');
 
 module.exports = {
-  getProductsService
-}
+  getProductsService,
+  getProductDetailsService,
+};
