@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { getProducts, getProductById } = require('../controllers');
+const { getNewModels } = require('../controllers/phonesController');
+const { getProducts, getProductById } = require('../controllers/ProductsController');
+const { validateQueryParams } = require('../middlewares');
+const { getDiscountModels } = require('../controllers/DiscountController');
 
-//ATENÇÃO!!!! ROTAS PRECISAM SER ATUALIZADAS!!!!
-
-router.get('/products', getProducts);
+router.get('/new-models', getNewModels);
+router.get('/products', validateQueryParams, getProducts);
 router.get('/products/:id', getProductById);
-router.post('/');
-router.patch('/');
-router.delete('/');
+router.get('/discount-models', getDiscountModels);
 
 module.exports = router;

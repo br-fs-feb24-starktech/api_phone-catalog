@@ -4,6 +4,7 @@ const SystemMessages = {
       'The provided category is not valid, options are: phones, tablets, accessories',
     INVALID_PAGE_NUMBER: 'The provided page number is above pages number limit',
     PRODUCT_NOT_FOUND: 'Product not found',
+    INVALID_SORT_CONTENT: 'The provided sort is not valid, options are: year, name, price',
   },
 };
 
