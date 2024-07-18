@@ -4,7 +4,7 @@ const { getNewModels } = require('../controllers/phonesController');
 const { getProducts, getProductById } = require('../controllers/productController');
 const { validateQueryParams } = require('../middlewares');
 const { getDiscountModels } = require('../controllers/discountController');
-const { getFavorites, postNewFavorite, deleteUserFavorite } = require('../controllers/FavoritesController');
+const { getFavorites, postNewFavorite, deleteUserFavorite } = require('../controllers/favoritesController');
 
 router.get('/new-models', getNewModels);
 router.get('/products', validateQueryParams, getProducts);
