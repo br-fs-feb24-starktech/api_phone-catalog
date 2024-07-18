@@ -3,7 +3,7 @@ const systemMessages = require('../config/systemMessages');
 const { Op } = require('sequelize');
 
 const getProductsService = async filters => {
-  let { category, page, limit, sort } = filters;
+  let { category, page, limit, sort, search } = filters;
 
   page = parseInt(page) || 1;
   limit = parseInt(limit) || 16;
@@ -26,9 +26,19 @@ const getProductsService = async filters => {
     options.where = { category };
   }
 
+  if (search) {
+    options.where.name = {
+      [Op.iLike]: `%${search}%`,
+    };
+  }
+
   const { rows: productsFromCategory, count: totalItems } = await Product.findAndCountAll(options);
 
   const totalPages = Math.ceil(totalItems / limit);
+
+  if (productsFromCategory.length === 0) {
+    return new Error(systemMessages.PRODUCTS.PRODUCT_NOT_FOUND);
+  }
 
   if (page > totalPages) {
     return new Error(systemMessages.PRODUCTS.INVALID_PAGE_NUMBER);
