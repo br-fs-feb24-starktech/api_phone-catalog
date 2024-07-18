@@ -1,5 +1,5 @@
 const { loginController } = require('./authController');
-const { getProducts, getProductById } = require('./ProductsController');
+const { getProducts, getProductById } = require('./productController');
 
 module.exports = {
   getProducts,
