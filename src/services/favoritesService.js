@@ -22,15 +22,12 @@ const postFavorite = async (query) => {
   return result;
 }
 
-const deleteFavorite = async (query) => {
-
-  const { userId, productId } = query;
+const deleteFavorite = async (id) => {
 
   const result = await Favourite.destroy({
     where: {
-      userId: userId,
-      productId: productId,
-    },
+      id: id
+    }
   });
 
   return result;

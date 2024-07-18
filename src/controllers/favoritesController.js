@@ -33,7 +33,7 @@ const postNewFavorite = async (req, res) => {
 
 const deleteUserFavorite = async (req, res) => {
   try {
-    const favorite = await deleteFavorite(req.body);
+    const favorite = await deleteFavorite(req.params.id);
 
     if (favorite instanceof Error) {
       return res.status(404).json({ error: 'Failed to delete favorite' });
