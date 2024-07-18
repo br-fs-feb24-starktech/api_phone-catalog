@@ -8,8 +8,7 @@ const {
   getNewModels,
 } = require('../controllers/productController');
 const { validateQueryParams, validateToken } = require('../middlewares');
-const { getDiscountModels } = require('../controllers/discountController');
-const { getFavorites, postNewFavorite } = require('../controllers/favoritesController');
+const { getFavorites, postNewFavorite, deleteUserFavorite } = require('../controllers/favoritesController');
 
 router.get('/new-models', getNewModels);
 router.get('/products', validateQueryParams, getProducts);
