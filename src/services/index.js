@@ -1,3 +1,4 @@
+const { loginService } = require('./authService');
 const {
   getProductsService,
   getProductDetailsService,
@@ -7,5 +8,6 @@ const {
 module.exports = {
   getProductsService,
   getProductDetailsService,
+  loginService,
   getRecommendedProductsService,
 };
