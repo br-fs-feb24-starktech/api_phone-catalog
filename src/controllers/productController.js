@@ -1,4 +1,8 @@
-const { getProductsService, getProductDetailsService } = require('../services');
+const {
+  getProductsService,
+  getProductDetailsService,
+  getRecommendedProductsService,
+} = require('../services');
 
 const getProducts = async (req, res) => {
   try {
@@ -28,7 +32,22 @@ const getProductById = async (req, res) => {
   }
 };
 
+const getRecommendedFromProduct = async (req, res) => {
+  try {
+    const recommendedProducts = await getRecommendedProductsService(req.params.id);
+
+    if (recommendedProducts instanceof Error) {
+      return res.status(404).json({ error: recommendedProducts.message });
+    }
+    res.status(200).json(recommendedProducts);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
+  getRecommendedFromProduct,
 };
