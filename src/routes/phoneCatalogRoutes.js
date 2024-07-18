@@ -9,7 +9,8 @@ const {
 } = require('../controllers/productController');
 
 const { validateQueryParams } = require('../middlewares');
-const { getFavorites, postNewFavorite } = require('../controllers/favoritesController');
+const { getDiscountModels } = require('../controllers/discountController');
+const { getFavorites, postNewFavorite, deleteUserFavorite } = require('../controllers/favoritesController');
 
 router.get('/new-models', getNewModels);
 router.get('/products', validateQueryParams, getProducts);
@@ -18,5 +19,6 @@ router.get('/products/:id/recommended', getRecommendedFromProduct);
 router.get('/discount-models', getDiscountModels);
 router.get('/favorites/:user', getFavorites);
 router.post('/favorites', postNewFavorite);
+router.delete('/favorites/:id', deleteUserFavorite);
 
 module.exports = router;
