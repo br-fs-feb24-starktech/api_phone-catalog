@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getNewModels } = require('../controllers/phonesController');
 const {
   getProducts,
   getProductById,
   getRecommendedFromProduct,
+  getDiscountModels,
+  getNewModels,
 } = require('../controllers/productController');
+
 const { validateQueryParams } = require('../middlewares');
-const { getDiscountModels } = require('../controllers/discountController');
 const { getFavorites, postNewFavorite } = require('../controllers/favoritesController');
 
 router.get('/new-models', getNewModels);
