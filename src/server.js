@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
-const { phoneCatalogRouter, authRouter } = require('./routes');
+const {phoneCatalogRouter, authRouter} = require('./routes');
 require('dotenv').config();
 const models = require('./models');
 const path = require('path');
@@ -25,12 +25,13 @@ app.use('/login', authRouter);
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
-    await models.Item.sync({ force: true });
-    await models.Product.sync({ force: true });
-    await models.User.sync({ force: true });
-    await models.Favourite.sync({ force: true });
-    await models.Order.sync({ force: true });
-    await models.Address.sync({ force: true });
+    await models.Item.sync();
+    await models.Product.sync();
+    await models.User.sync();
+    await models.Favourite.sync();
+    await models.Order.sync();
+    await models.Address.sync();
+
 
     console.log('All models were synchronized successfully.');
 
