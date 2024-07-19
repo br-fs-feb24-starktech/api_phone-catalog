@@ -18,7 +18,7 @@ const publicPath = path.join(__dirname, '..', 'public');
 app.use('/img', express.static(path.join(publicPath, 'img')));
 
 app.use('/', phoneCatalogRouter);
-app.use('/login', authRouter);
+app.use(authRouter);
 
 (async () => {
   try {

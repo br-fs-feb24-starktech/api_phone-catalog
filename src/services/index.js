@@ -1,4 +1,4 @@
-const { loginService } = require('./authService');
+const { loginService, registerService } = require('./authService');
 const {
   getProductsService,
   getProductDetailsService,
@@ -10,4 +10,5 @@ module.exports = {
   getProductDetailsService,
   loginService,
   getRecommendedProductsService,
+  registerService,
 };
