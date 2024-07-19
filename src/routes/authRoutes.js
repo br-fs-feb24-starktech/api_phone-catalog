@@ -5,6 +5,8 @@ const {
   validateEmailFormat,
   validateIfEmailNotExists,
   validateLoginPassword,
+  validadeUserRegisterFields,
+  validateUserRegisterEmail,
 } = require('../middlewares');
 
 const authRouter = Router();
@@ -20,6 +22,9 @@ authRouter.post(
 
 authRouter.post(
   '/register',
+  validadeUserRegisterFields,
+  validateEmailFormat,
+  validateUserRegisterEmail,
   registerController
 );
 
