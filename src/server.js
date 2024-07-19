@@ -17,7 +17,7 @@ const publicPath = path.join(__dirname, '..', 'public');
 app.use('/img', express.static(path.join(publicPath, 'img')));
 
 app.use('/', phoneCatalogRouter);
-app.use('/login', authRouter);
+app.use(authRouter);
 
 (async () => {
   try {
@@ -30,6 +30,8 @@ app.use('/login', authRouter);
     await models.Favourite.sync();
     await models.Order.sync();
     await models.Address.sync();
+
+    // await sequelize.query('DROP TABLE IF EXISTS "users" CASCADE;');
 
     console.log('All models were synchronized successfully.');
 

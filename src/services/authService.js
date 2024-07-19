@@ -1,5 +1,7 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { raw } = require('express');
 
 const loginService = async loginData => {
   const { email } = loginData;
@@ -18,6 +20,25 @@ const loginService = async loginData => {
   return { user: userLogged, token };
 };
 
+const registerService = async (registerData) => {
+  const { username, email, password } = registerData;
+
+  const cryptPassword = await bcrypt.hash(password, 10);
+
+  const newUser = {
+    username,
+    email,
+    password: cryptPassword,
+    role: 'user',
+    avatar: null
+  };
+
+  const registeredUser = await User.create(newUser);
+
+  return registeredUser;
+}
+
 module.exports = {
   loginService,
+  registerService,
 };

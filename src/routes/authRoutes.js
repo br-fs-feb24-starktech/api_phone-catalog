@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { loginController } = require('../controllers');
+const { loginController, registerController } = require('../controllers');
 const {
   validateLoginFields,
   validateEmailFormat,
@@ -10,12 +10,17 @@ const {
 const authRouter = Router();
 
 authRouter.post(
-  '/',
+  '/login',
   validateLoginFields,
   validateEmailFormat,
   validateIfEmailNotExists,
   validateLoginPassword,
   loginController,
+);
+
+authRouter.post(
+  '/register',
+  registerController
 );
 
 module.exports = authRouter;
