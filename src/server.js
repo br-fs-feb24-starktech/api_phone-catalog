@@ -24,12 +24,14 @@ app.use('/login', authRouter);
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
-    await models.Item.sync();
-    await models.Product.sync();
-    await models.User.sync();
-    await models.Favourite.sync();
-    await models.Order.sync();
-    await models.Address.sync();
+    // await models.Item.sync();
+    // await models.Product.sync();
+    // await models.User.sync();
+    // await models.Favourite.sync();
+    // await models.Order.sync();
+    // await models.Address.sync();
+
+    await sequelize.query('DROP TABLE IF EXISTS "users" CASCADE;');
 
     console.log('All models were synchronized successfully.');
 
