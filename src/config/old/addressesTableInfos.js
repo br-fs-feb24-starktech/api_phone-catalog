@@ -2,7 +2,6 @@ const currentDate = new Date();
 
 const addresses = [
   {
-    id: 1,
     street: 'Rua A',
     number: '1',
     complement: 'apartamento 1',
@@ -16,7 +15,6 @@ const addresses = [
     updated_at: currentDate,
   },
   {
-    id: 2,
     street: 'Rua B',
     number: '25',
     complement: 'apartamento 546',
@@ -30,7 +28,6 @@ const addresses = [
     updated_at: currentDate,
   },
   {
-    id: 3,
     street: 'Rua C',
     number: '47',
     complement: 'apartamento 123',
@@ -44,7 +41,6 @@ const addresses = [
     updated_at: currentDate,
   },
   {
-    id: 4,
     street: 'Rua D',
     number: '1',
     complement: 'apartamento 867',
