@@ -104,9 +104,9 @@ const getRecommendedProductsService = async itemId => {
   }
 
   const recommendedProductsList = recommendedProducts.map(product => product.toJSON());
-  const suffledList = shuffledArray(recommendedProductsList);
+  const shuffledList = shuffledArray(recommendedProductsList);
 
-  return suffledList;
+  return shuffledList;
 };
 
 module.exports = {
