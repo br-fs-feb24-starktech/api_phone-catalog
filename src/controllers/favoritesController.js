@@ -12,7 +12,7 @@ const getFavorites = async (req, res) => {
     res.status(200).json(favorites);
   
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "error" });
   }
 }
 
@@ -33,7 +33,7 @@ const postNewFavorite = async (req, res) => {
 
 const deleteUserFavorite = async (req, res) => {
   try {
-    const favorite = await deleteFavorite(req.params.id);
+    const favorite = await deleteFavorite(req.params.id, req.query.productId);
 
     if (favorite instanceof Error) {
       return res.status(404).json({ error: 'Failed to delete favorite' });
