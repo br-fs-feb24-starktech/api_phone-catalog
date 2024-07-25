@@ -7,7 +7,7 @@ const getAllFavorites = async (userId) => {
 
   const favorites = await Favourite.findAll({
     attributes: ["productId"],
-    where: { token: userId },
+    where: { userId: userId },
   })
 
   favorites.map(id => favoriteDetails(id));
