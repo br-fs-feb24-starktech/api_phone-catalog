@@ -1,32 +1,54 @@
-const { Favourite } = require('../models');
+const { Op } = require('sequelize');
+const { Favourite, Product } = require('../models');
 
 const getAllFavorites = async (userId) => {
 
+  const ids = [];
+
   const favorites = await Favourite.findAll({
-    where: {userId: userId},
-    limit: 8,
+    attributes: ["productId"],
+    where: { userId: userId },
+  })
+
+  favorites.map(id => favoriteDetails(id));
+
+  function favoriteDetails(id) {
+    const {productId } = id;
+    ids.push(productId);
+  }
+
+  const result = await Product.findAll({
+    where: { id: ids },
   });
 
-  return favorites;
+  return result;
+
 }
 
 const postFavorite = async (query) => {
 
   const { userId, productId } = query;
 
-  const result = await Favourite.create({
-    userId: userId,
-    productId: productId,
-  });
+  const result = await Favourite.findOne({ where: { userId: userId, productId: productId } }).then(
+    function (foundItem) {
+      if (!foundItem) {
+        return Favourite.create({
+          userId: userId,
+          productId: productId,
+        });
+      }
+    },
+  );
 
   return result;
 }
 
-const deleteFavorite = async (id) => {
+const deleteFavorite = async (id, productId) => {
 
   const result = await Favourite.destroy({
     where: {
-      id: id
+      userId: id,
+      productId: productId
     }
   });
 
